@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.ailton.cursomc.domain.Categoria;
 import com.ailton.cursomc.repositories.CategoriaRepository;
 
+import com.ailton.cursomc.services.exceptions.ObjectNotFoundException;
+
 @Service
 public class CategoriaService {
 
@@ -20,6 +22,10 @@ public class CategoriaService {
 		 * que permite retornar a instância ou um valor nulo caso o item não seja encontrado.
 		 * */
 		Optional<Categoria> obj = repo.findById(id);
-		return obj.orElse(null);
+		//return obj.orElse(null);
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()
+			)
+		);  		
 	}
 }
