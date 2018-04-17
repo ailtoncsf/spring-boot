@@ -1,9 +1,14 @@
 package com.ailton.cursomc.domain;
 
-import java.sql.Date;
+
+
+import java.util.Date;
+
+import javax.persistence.Entity;
 
 import com.ailton.cursomc.domain.enums.EstadoPagamento;
 
+@Entity
 public class PagamentoComBoleto extends Pagamento {
 	private static final long serialVersionUID = 1L;
 
