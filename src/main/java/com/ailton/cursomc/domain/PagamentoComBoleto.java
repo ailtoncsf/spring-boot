@@ -1,7 +1,5 @@
 package com.ailton.cursomc.domain;
 
-
-
 import java.util.Date;
 
 import javax.persistence.Entity;
