@@ -1,13 +1,15 @@
 package com.ailton.cursomc.services;
 
+import java.net.URI;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.ailton.cursomc.domain.Categoria;
 import com.ailton.cursomc.repositories.CategoriaRepository;
-
 import com.ailton.cursomc.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -27,5 +29,10 @@ public class CategoriaService {
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()
 			)
 		);  		
+	}
+	
+	public Categoria insert(Categoria obj) {
+		obj.setId(null);
+		return repo.save(obj);
 	}
 }
