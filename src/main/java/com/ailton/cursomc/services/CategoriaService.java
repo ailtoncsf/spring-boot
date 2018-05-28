@@ -18,7 +18,7 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepository repo;
 	
-	public Categoria buscar(Integer id) {
+	public Categoria find(Integer id) {
 		/*
 		 * Trocando método findOne(Java 7) padrão em repo pelo findById (Java 8) com uso da classe Optional
 		 * que permite retornar a instância ou um valor nulo caso o item não seja encontrado.
@@ -33,6 +33,11 @@ public class CategoriaService {
 	
 	public Categoria insert(Categoria obj) {
 		obj.setId(null);
+		return repo.save(obj);
+	}
+	
+	public Categoria update(Categoria obj) {
+		find(obj.getId());
 		return repo.save(obj);
 	}
 }

@@ -15,7 +15,7 @@ public class ClienteService {
 	@Autowired
 	private ClienteRepository repo;
 	
-	public Cliente buscar(Integer id) {
+	public Cliente find(Integer id) {
 		/*
 		 * Trocando método findOne(Java 7) padrão em repo pelo findById (Java 8) com uso da classe Optional
 		 * que permite retornar a instância ou um valor nulo caso o item não seja encontrado.

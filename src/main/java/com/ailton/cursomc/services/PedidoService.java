@@ -15,7 +15,7 @@ public class PedidoService {
 	@Autowired
 	private PedidoRepository repo;
 	
-	public Pedido buscar(Integer id) {
+	public Pedido find(Integer id) {
 		/*
 		 * Trocando método findOne(Java 7) padrão em repo pelo findById (Java 8) com uso da classe Optional
 		 * que permite retornar a instância ou um valor nulo caso o item não seja encontrado.
