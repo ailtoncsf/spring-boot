@@ -4,12 +4,14 @@ import java.net.URI;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.ailton.cursomc.domain.Categoria;
 import com.ailton.cursomc.repositories.CategoriaRepository;
+import com.ailton.cursomc.services.exceptions.DataIntegrityException;
 import com.ailton.cursomc.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -39,5 +41,14 @@ public class CategoriaService {
 	public Categoria update(Categoria obj) {
 		find(obj.getId());
 		return repo.save(obj);
+	}
+	
+	public void delete(Integer id) {
+		find(id);
+		try {
+			repo.deleteById(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityException("Não é possível excluir uma categoria que tem produtos associados.");
+		}
 	}
 }
