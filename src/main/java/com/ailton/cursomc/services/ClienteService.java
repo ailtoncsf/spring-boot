@@ -49,7 +49,7 @@ public class ClienteService {
 	public Cliente insert(Cliente obj) {
 		obj.setId(null);
 		repo.save(obj);
-		enderecoRepository.save(obj.getEnderecos());
+		enderecoRepository.saveAll(obj.getEnderecos());
 		return obj;
 	}	
 	
@@ -64,7 +64,7 @@ public class ClienteService {
 		try {
 			repo.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possível excluir porque há entidades relacionadas.");
+			throw new DataIntegrityException("Não é possível excluir porque há pedidos relacionados.");
 		}
 	}
 	
